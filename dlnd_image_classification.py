@@ -403,7 +403,7 @@ tests.test_output(output)
 # * 返回输出
 # * 使用 `keep_prob` 向模型中的一个或多个层应用 [TensorFlow 的 Dropout](https://www.tensorflow.org/api_docs/python/tf/nn/dropout)
 
-# In[49]:
+# In[60]:
 
 
 def conv_net(x, keep_prob):
@@ -421,7 +421,7 @@ def conv_net(x, keep_prob):
     num_outputs = 10
     conv_ksize = (2, 2)
     conv_strides = (1, 1)
-    pool_ksize = (2, 2)
+    pool_ksize = (4, 4)
     pool_strides = (1, 1)
     
     #from time import time
@@ -463,7 +463,7 @@ def conv_net(x, keep_prob):
     
     # fully connected layer 1
     fully_connected_layer = fully_conn(flatten_layer, 64)
-    #fully_connected_layer = tf.nn.dropout(fully_connected_layer, keep_prob)
+    fully_connected_layer = tf.nn.dropout(fully_connected_layer, keep_prob)
     #print("fully connected layer 1: {}s".format(time()-t0))
     
     
@@ -606,7 +606,7 @@ keep_probability = 0.5
 # 我们先用单个部分，而不是用所有的 CIFAR-10 批次训练神经网络。这样可以节省时间，并对模型进行迭代，以提高准确率。最终验证准确率达到 50% 或以上之后，在下一部分对所有数据运行模型。
 # 
 
-# In[50]:
+# In[61]:
 
 
 """
@@ -630,7 +630,7 @@ with tf.Session() as sess:
 # 
 # 现在，单个 CIFAR-10 部分的准确率已经不错了，试试所有五个部分吧。
 
-# In[52]:
+# In[62]:
 
 
 """
@@ -666,7 +666,7 @@ with tf.Session() as sess:
 # 
 # 利用测试数据集测试你的模型。这将是最终的准确率。你的准确率应该高于 50%。如果没达到，请继续调整模型结构和参数。
 
-# In[53]:
+# In[63]:
 
 
 """
